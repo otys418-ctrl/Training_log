@@ -1,0 +1,74 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "DATABASE_URL": "postgresql://user:password@localhost:5432/dbname"
+      }
+    },
+    "MongoDB": {
+      "command": "npx -y mongodb-mcp-server",
+      "args": [],
+      "env": {}
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/flxshh/Desktop/WARP/Training_log",
+        "/Users/flxshh/Desktop/WARP/"
+      ]
+    },
+    "rest-api": {
+      "command": "npx",
+      "args": ["-y",
+        "dkmaker-mcp-rest-api"],
+      "env": {
+        "REST_BASE_URL": "http://localhost:3000"
+      }
+    },
+    "csvjson": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-csvjson"],
+      "env": {
+        "DATA_PATH": "./data"
+      }
+    },
+    "timeseries": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-timeseries"],
+      "env": {
+        "STORAGE_PATH": "./timeseries"
+      }
+    },
+    "database": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-database"],
+      "env": {
+        "DB_URL": "mysql://user:password@localhost:3306/dbname"
+      }
+    },
+    "apitesting": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-apitesting"],
+      "env": {
+        "TESTS_PATH": "./api-tests"
+      }
+    },
+    "Context7": {
+     "url": "https://mcp.context7.com/mcp",
+     "headers": {}
+   },
+
+    "tavily": {
+      "url": "https://mcp.tavily.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer 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"
+      }
+    }
+  }
+}
+
+

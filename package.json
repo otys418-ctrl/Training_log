@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "mcp-framework": "^0.2.15",
+    "node-fetch": "^3.3.2"
+  }
+}
