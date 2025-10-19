@@ -17,8 +17,8 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/Users/flxshh/Desktop/WARP/Training_log",
-        "/Users/flxshh/Desktop/WARP/"
+        "--unrestricted",
+        "/Users/flxshh/Desktop/WARP/Training_log"
       ]
     },
     "rest-api": {

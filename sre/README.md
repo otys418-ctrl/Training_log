@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# S-RE: Workout Session & Reference Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Version:** 1.0.0  
+**Port:** 5173 (development)  
+**Status:** ✅ Fully Operational
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Overview
 
-## React Compiler
+S-RE is the **frontend orchestration layer** for the Progressive Overload Log system. It provides the user interface for logging workouts and tracking progressive overload by integrating with P-MIS (workout plans) and L-DPS (performance logs).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Key Features (PRD Compliance)
 
-## Expanding the ESLint configuration
+- ✅ **F.2.0:** Daily workout to-do list from P-MIS
+- ✅ **F.3.0:** Real-time set logging to L-DPS  
+- ✅ **F.5.0:** Progressive overload reference display (CRITICAL)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Quick Start
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Install Dependencies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Start Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Server starts at **http://localhost:5173**
+
+### 3. Ensure Backend Services Running
+
+- **P-MIS:** http://localhost:8000
+- **L-DPS:** http://localhost:8001
+
+---
+
+## 📱 User Flow
+
+1. View daily workout list (from P-MIS)
+2. Select an exercise
+3. View previous session performance (from L-DPS)
+4. Get progressive overload suggestions
+5. Log sets in real-time (to L-DPS)
+6. Track progress
+
+---
+
+## 🎯 PRD Requirements
+
+| ID | Requirement | Status |
+|----|-------------|--------|
+| F.2.0 | Daily To-Do Generation | ✅ Complete |
+| F.3.0 | Real-Time Logging | ✅ Complete |
+| F.5.0 | Progressive Overload Reference | ✅ Complete |
+
+---
+
+**Full documentation:** See `/docs/S-RE_IMPLEMENTATION_PLAN.md`

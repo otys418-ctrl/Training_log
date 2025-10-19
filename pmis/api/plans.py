@@ -78,13 +78,16 @@ async def get_daily_workout(
     Returns:
         DailyWorkoutResponse containing exercises for the specified day
     """
-    # Validate day
+    # Validate day - accept both "Day 1" format and standard day names
     valid_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    if day.capitalize() not in valid_days:
-        raise HTTPException(status_code=400, detail=f"Invalid day. Must be one of: {', '.join(valid_days)}")
+    valid_day_numbers = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"]
+    
+    day_formatted = day.replace("%20", " ").strip()
+    if day_formatted.capitalize() not in valid_days and day_formatted not in valid_day_numbers:
+        raise HTTPException(status_code=400, detail=f"Invalid day. Must be one of: {', '.join(valid_days)} or Day 1-7")
     
     # Fetch plan from database
-    workout = crud.get_daily_workout(db, user_id, day.capitalize())
+    workout = crud.get_daily_workout(db, user_id, day_formatted)
     
     if not workout:
         raise HTTPException(status_code=404, detail=f"No workout found for {user_id} on {day}")

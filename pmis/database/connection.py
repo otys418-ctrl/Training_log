@@ -6,9 +6,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from models.db_models import Base
 import os
+from pathlib import Path
 
 # Database URL - using SQLite for development
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./pmis.db")
+# Use absolute path to avoid issues with working directory changes
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/pmis.db")
 
 # Create engine
 engine = create_engine(
