@@ -17,7 +17,6 @@ export function WorkoutListPage() {
   const state = useWorkout()
   const dispatch = useWorkoutDispatch()
   const navigate = useNavigate()
-  const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     loadWorkout()
@@ -120,7 +119,7 @@ export function WorkoutListPage() {
             <ExerciseCard
               key={idx}
               exercise={exercise}
-              isCompleted={completedExercises.has(exercise.name)}
+              isCompleted={state.completedExercises.has(exercise.name)}
               onStart={() => handleStartExercise(exercise.name, idx)}
             />
           ))}
@@ -131,7 +130,7 @@ export function WorkoutListPage() {
           <CardContent className="pt-6">
             <div className="text-center">
               <p className="text-sm text-muted-foreground">
-                {completedExercises.size} / {state.dailyWorkout.exercises.length} exercises completed
+                {state.completedExercises.size} / {state.dailyWorkout.exercises.length} exercises completed
               </p>
             </div>
           </CardContent>

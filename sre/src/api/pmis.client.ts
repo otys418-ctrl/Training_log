@@ -5,7 +5,7 @@
  * PRD Reference: F.2.0 - Daily To-Do Generation
  */
 
-import { DailyWorkout, PlanResponse, APIError } from './types';
+import type { DailyWorkout, PlanResponse, APIError } from './types';
 
 const PMIS_BASE_URL = import.meta.env.VITE_PMIS_URL || 'http://localhost:8000';
 

@@ -5,7 +5,7 @@
  * PRD References: F.3.0 (Real-Time Logging), F.5.0 (Progressive Overload Reference - CRITICAL)
  */
 
-import { LogEntryCreate, LogEntryResponse, SessionReference, APIError } from './types';
+import type { LogEntryCreate, LogEntryResponse, SessionReference, APIError } from './types';
 
 const LDPS_BASE_URL = import.meta.env.VITE_LDPS_URL || 'http://localhost:8001';
 

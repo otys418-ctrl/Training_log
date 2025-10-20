@@ -5,7 +5,7 @@
  * Follows official React documentation best practices
  */
 
-import { DailyWorkout, SessionReference, LogEntryResponse } from '../api/types';
+import type { DailyWorkout, SessionReference, LogEntryResponse } from '../api/types';
 
 // ============================================================================
 // State Shape
@@ -19,6 +19,7 @@ export interface WorkoutState {
   currentExercise: string | null;
   referenceData: SessionReference | null;
   loggedSets: LogEntryResponse[];
+  completedExercises: Set<string>; // Track completed exercise names
   isLoading: boolean;
   error: string | null;
 }
@@ -36,6 +37,7 @@ export type WorkoutAction =
   | { type: 'SELECT_EXERCISE'; payload: { exerciseName: string; index: number } }
   | { type: 'LOAD_REFERENCE_SUCCESS'; payload: SessionReference | null }
   | { type: 'LOG_SET_SUCCESS'; payload: LogEntryResponse }
+  | { type: 'COMPLETE_EXERCISE'; payload: string } // Mark exercise as completed
   | { type: 'CLEAR_LOGGED_SETS' }
   | { type: 'RESET_SESSION' };
 
@@ -101,6 +103,12 @@ export function workoutReducer(state: WorkoutState, action: WorkoutAction): Work
         loggedSets: [...state.loggedSets, action.payload],
       };
 
+    case 'COMPLETE_EXERCISE':
+      return {
+        ...state,
+        completedExercises: new Set([...state.completedExercises, action.payload]),
+      };
+
     case 'CLEAR_LOGGED_SETS':
       return {
         ...state,
@@ -133,15 +141,37 @@ export function getCurrentDay(): string {
   return days[new Date().getDay()];
 }
 
-export function createInitialState(userId = 'user_123'): WorkoutState {
+/**
+ * Map weekday names to Day numbers for plan lookup
+ * Monday (Day-1) = "Day 1", Tuesday (Day-2) = "Day 2", etc.
+ */
+export function mapWeekdayToPlanDay(weekday: string): string {
+  const dayMapping: Record<string, string> = {
+    'Monday': 'Day 1',
+    'Tuesday': 'Day 2', 
+    'Wednesday': 'Day 3',
+    'Thursday': 'Day 4',
+    'Friday': 'Day 5',
+    'Saturday': 'Day 6',
+    'Sunday': 'Day 7'
+  };
+  
+  return dayMapping[weekday] || weekday;
+}
+
+export function createInitialState(userId = 'userid20OCt_3'): WorkoutState {
+  const todayWeekday = getCurrentDay();
+  const planDay = mapWeekdayToPlanDay(todayWeekday);
+  
   return {
     userId,
-    currentDay: getCurrentDay(),
+    currentDay: planDay, // Use mapped plan day (e.g., "Day 1" for Monday)
     dailyWorkout: null,
     currentExerciseIndex: -1,
     currentExercise: null,
     referenceData: null,
     loggedSets: [],
+    completedExercises: new Set<string>(),
     isLoading: false,
     error: null,
   };

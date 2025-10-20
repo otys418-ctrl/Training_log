@@ -6,8 +6,10 @@
  * Reference: https://react.dev/learn/scaling-up-with-reducer-and-context
  */
 
-import { createContext, useContext, useReducer, ReactNode, Dispatch } from 'react';
-import { workoutReducer, createInitialState, WorkoutState, WorkoutAction } from './workoutReducer';
+import { createContext, useContext, useReducer } from 'react';
+import type { ReactNode, Dispatch } from 'react';
+import { workoutReducer, createInitialState } from './workoutReducer';
+import type { WorkoutState, WorkoutAction } from './workoutReducer';
 
 // ============================================================================
 // Context Creation

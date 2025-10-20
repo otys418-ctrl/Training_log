@@ -8,7 +8,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { SessionReference } from '@/api/types'
+import type { SessionReference } from '@/api/types'
 import { calculateVolume, findBestSet } from '@/utils/progressiveOverload'
 
 interface PreviousSessionDisplayProps {

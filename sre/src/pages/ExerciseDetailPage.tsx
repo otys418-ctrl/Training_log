@@ -66,6 +66,10 @@ export function ExerciseDetailPage() {
   }
 
   const handleFinish = () => {
+    // Mark exercise as completed if sets were logged
+    if (state.loggedSets.length > 0) {
+      dispatch({ type: 'COMPLETE_EXERCISE', payload: decodedName })
+    }
     dispatch({ type: 'RESET_SESSION' })
     navigate('/')
   }

@@ -8,7 +8,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Exercise } from '@/api/types'
+import type { Exercise } from '@/api/types'
 
 interface ExerciseCardProps {
   exercise: Exercise

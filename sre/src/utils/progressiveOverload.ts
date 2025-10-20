@@ -5,7 +5,7 @@
  * Core feature for PRD F.5.0 - Progressive Overload Reference
  */
 
-import { SessionReference } from '../api/types';
+import type { SessionReference } from '../api/types';
 
 // ============================================================================
 // Types
